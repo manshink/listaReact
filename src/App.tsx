@@ -1,33 +1,15 @@
 
 import './App.css'
 
-type Person ={
-  name: string;
-  age?: number;
-}
-
-let person: Person = {
-  name : "mateo",
-  age : 20,
-};
-
-let lotsOfPeople: Person[];
-
-let printName : (name: string) => never;
-// function printName (name: string){
-//   console.log(name);
-// }
-
-// printName("Mateo");
 
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <>
-
-      <h1>Hello World</h1>
-      
+      <div className="App">
+      <span className="heading">Taskify</span>
+      </div>
     </>
   )
 }
