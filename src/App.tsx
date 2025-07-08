@@ -1,8 +1,12 @@
 import './App.css'
 import InputField from './components/InputField'
+import React, { useState } from 'react';
 
 
 const App: React.FC = () => {
+
+  const [todo, setTodo] = useState<string>("");
+  console.log(todo)
 
   return (
     <>
@@ -10,7 +14,7 @@ const App: React.FC = () => {
 
 
       <span className="heading">Taskify</span>
-      <InputField/>
+      <InputField todo = {todo} setTodo = {setTodo} />
 
       </div>
     </>
