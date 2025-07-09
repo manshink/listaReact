@@ -8,13 +8,13 @@ import TodoList from './TodoList'
 type Props ={
     todo: Todo;
     todos: Todo[];
-    setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 const SingleTodo = ({todo, todos, setTodos}: Props) => {
     
     const handleDone = (id: number) => {
-        setTodos(todos.map((todo) => todo.id===id?{...todo, isDone:!TodoList.isDone}: todo))
+        setTodos(todos.map((todo) => todo.id===id?{...todo, isDone:!todo.isDone}: todo))
     }
   
     return (
