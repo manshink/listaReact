@@ -3,6 +3,7 @@ import type { Todo } from '../model'
 import { CiEdit  } from 'react-icons/ci'
 import { MdDeleteForever, MdDone } from 'react-icons/md'
 import "./style.css"
+import TodoList from './TodoList'
 
 type Props ={
     todo: Todo;
@@ -11,11 +12,25 @@ type Props ={
 }
 
 const SingleTodo = ({todo, todos, setTodos}: Props) => {
-  return (
+    
+    const handleDone = (id: number) => {
+        setTodos(todos.map((todo) => todo.id===id?{...todo, isDone:!TodoList.isDone}: todo))
+    }
+  
+    return (
     <form className='todos_single'>
-        <span className="todos_single--text">
-            {todo.todo}
-        </span>
+        {
+            todo.isDone?(
+                <s className="todos_single--text">
+                    {todo.todo}
+                </s>
+            ):(
+                <span className="todos_single--text">
+                    {todo.todo}
+                </span>
+            )
+        }
+
         <div>
             <span className="icon">
                 <CiEdit />
@@ -23,7 +38,7 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
             <span className="icon">
                 <MdDeleteForever />
             </span>
-            <span className="icon">
+            <span className="icon" onClick={() => handleDone(todo.id)}>
                 <MdDone />
             </span>
         </div>
