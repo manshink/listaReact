@@ -3,7 +3,9 @@ import type { Todo } from '../model'
 import { CiEdit  } from 'react-icons/ci'
 import { MdDeleteForever, MdDone } from 'react-icons/md'
 import "./style.css"
-import TodoList from './TodoList'
+import TodoList from '../TodoList'
+
+// corregir arriba, quitar un puntico nada mas hago esto para la racha de github
 
 type Props ={
     todo: Todo;
@@ -20,6 +22,8 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
     const handleDelete = (id: number) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
+
+    // Hola
   
     return (
     <form className='todos_single'>
