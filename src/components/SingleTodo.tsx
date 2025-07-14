@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { Todo } from '../model'
 import { CiEdit  } from 'react-icons/ci'
 import { MdDeleteForever, MdDone } from 'react-icons/md'
 import "./style.css"
-import TodoList from '../TodoList'
+import TodoList from './TodoList'
 
-// corregir arriba, quitar un puntico nada mas hago esto para la racha de github
 
 type Props ={
     todo: Todo;
@@ -14,6 +13,9 @@ type Props ={
 }
 
 const SingleTodo = ({todo, todos, setTodos}: Props) => {
+
+    const [edit, setEdit] = useState <boolean>(false);
+    const [editTodo, setEditTodo] = useState <string>(todo.todo);
     
     const handleDone = (id: number) => {
         setTodos(todos.map((todo) => todo.id===id?{...todo, isDone:!todo.isDone}: todo))
@@ -23,24 +25,47 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
-    // Hola
-  
+  const handleEdit = (e:React.FormEvent, id: number) =>{
+    e.preventDefault();
+
+    setTodos(todos.map((todo) => (
+        todo.id === id? {...todo, todo:editTodo}: todo
+    )));
+
+    setEdit(false);
+
+  }
+
+
     return (
-    <form className='todos_single'>
+    <form className='todos_single' onSubmit={(e) => handleEdit (e, todo.id)}>
+        
         {
-            todo.isDone?(
-                <s className="todos_single--text">
-                    {todo.todo}
-                </s>
-            ):(
-                <span className="todos_single--text">
-                    {todo.todo}
-                </span>
+            edit? (
+                <input value={editTodo} onChange={(e) => setEditTodo(e.target.value)} className="todos__single--test"/>
+            ) : (
+                
+                
+                    todo.isDone?(
+                        <s className="todos_single--text">
+                            {todo.todo}
+                        </s>
+                    ):(
+                        <span className="todos_single--text">
+                            {todo.todo}
+                        </span>
+                    )
             )
         }
+        
 
         <div>
-            <span className="icon">
+            <span className="icon" onClick={ () => { 
+                if(!edit && !todo.isDone){
+                    setEdit (!edit)
+                }
+                }
+             }>
                 <CiEdit />
             </span>
             <span className="icon" onClick={() => handleDelete(todo.id)}>
