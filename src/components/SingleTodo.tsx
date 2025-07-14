@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import type { Todo } from '../model'
 import { CiEdit  } from 'react-icons/ci'
 import { MdDeleteForever, MdDone } from 'react-icons/md'
 import "./style.css"
-import TodoList from './TodoList'
+
 
 
 type Props ={
@@ -35,6 +35,15 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
     setEdit(false);
 
   }
+  
+  const inputRef = useRef <HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  
+  }, [edit])
+  
+
 
 
     return (
@@ -42,7 +51,7 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
         
         {
             edit? (
-                <input value={editTodo} onChange={(e) => setEditTodo(e.target.value)} className="todos__single--test"/>
+                <input ref={inputRef} value={editTodo} onChange={(e) => setEditTodo(e.target.value)} className="todos_single--text"/>
             ) : (
                 
                 
