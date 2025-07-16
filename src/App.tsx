@@ -3,6 +3,8 @@ import './App.css'
 import InputField from './components/InputField'
 import TodoList from './components/TodoList';
 import type { Todo } from './model';
+import {DndContext} from '@dnd-kit/core';
+
 
 
 const App: React.FC = () => {
@@ -19,10 +21,12 @@ const App: React.FC = () => {
     }
   }
 
-  console.log(todos)
+
+
 
   return (
     <>
+      <DndContext>
       <div className="App">
 
 
@@ -36,6 +40,7 @@ const App: React.FC = () => {
       />
       
       </div>
+      </DndContext>
     </>
   )
 }
