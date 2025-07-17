@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <DndContext>
+      <DndContext onDragEnd={() => {}}>
       <div className="App">
 
 
