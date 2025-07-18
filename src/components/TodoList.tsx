@@ -2,8 +2,7 @@ import React from 'react';
 import type { Todo } from '../model';
 import "./style.css"
 import SingleTodo from './SingleTodo';
-import {DndContext} from '@dnd-kit/core';
-
+import { Droppable } from '@dnd-kit/dnd-kit';
 interface Props {
     todos: Todo[];
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
